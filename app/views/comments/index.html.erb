@@ -1,0 +1,19 @@
+<h2><%= @post.message %></h2> 
+<table>  
+	<tr>
+		<th>Commenter</th>  
+		<th>Body</th>  
+	</tr> 
+	
+	<% for comment in @comments %>  
+		<tr>  
+		<td><%=h comment.user.email %></td>  
+		<td><%=h comment.body %></td>  
+	    <td><%= link_to 'Delete', {:controller=> 'comments', :action => 'delete', :post_id => @post , :id => comment},
+		 :confirm => 'Are you sure?' %></td>		
+		 </tr>
+	<% end %> 
+	
+	</table> <br /> 
+	<%= link_to 'New comment', new_post_comment_path(@post) %> 
+	<%= link_to 'Back to Posts', posts_path %> 
