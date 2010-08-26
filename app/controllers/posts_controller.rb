@@ -2,15 +2,6 @@ class PostsController < ApplicationController
 
 	before_filter :authenticate_user!
 	
-	#home page which shows all posts
-	def index  
-		@posts = current_user.posts.all(:order => "created_at DESC")  
-		
-		respond_to do |format|
-			format.html
-			format.xml { render:xml => @posts}
-		end
-	end  
 
 	#show only one post
 	def show
@@ -31,11 +22,11 @@ class PostsController < ApplicationController
 			respond_to do |format|  
 				if @post.save  
 					flash[:notice] = 'Post was successfully created.'
-					format.html { redirect_to posts_path }  
+					format.html { redirect_to :back }  
 					format.xml { render:xml => @post}
 				else  
 					flash[:notice] = "Message failed to save."  
-					format.html { redirect_to posts_path }
+					format.html { redirect_to :back  }
 					format.xml { render :xml => @post.errors,  
 									:status => :unprocessable_entity } 
 				end  
@@ -51,7 +42,7 @@ class PostsController < ApplicationController
   		@post.destroy 
   		
   		respond_to do |format| 
-  			format.html { redirect_to(posts_url) } 
+  			format.html { redirect_to :back } 
   			format.xml { head :ok }
   		end 
   	end 

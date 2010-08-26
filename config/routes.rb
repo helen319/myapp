@@ -2,7 +2,7 @@ Myapp::Application.routes.draw do |map|
 
   devise_for :users
 
-  map.root :controller => "users", :action => "profile"
+  map.root :controller => "users", :action => "show"
   map.resources :posts  
   map.resources :posts, :has_many => :comments
   get "comments/create"

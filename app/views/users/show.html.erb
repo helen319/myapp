@@ -1,0 +1,6 @@
+
+<% @users.each do |user| %>
+	<%= link_to ({:controller=> 'users', :action => 'profile', :user_id => user}) do %>
+    	<p><span><%= user.email %></span></p>
+  	<% end %>
+<% end %>

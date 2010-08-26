@@ -16,4 +16,6 @@
 	
 	</table> <br /> 
 	<%= link_to 'New comment', new_post_comment_path(@post) %> 
-	<%= link_to 'Back to Posts', posts_path %> 
+    <%= link_to 'Back to Profile',  {:controller=> 'users', :action => 'profile', :user_id => @post.user} %> 
+		
+		

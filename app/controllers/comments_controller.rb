@@ -17,9 +17,9 @@ class CommentsController < ApplicationController
   	@comment = @post.comments.build(params[:comment])
   	@comment.user = current_user
   	if @comment.save
-  		redirect_to posts_path
+  		redirect_to :controller => 'users', :action => 'profile', :user_id => @post.user
   	else
-  		redirect_to posts_path
+  		redirect_to :controller => 'users', :action => 'profile', :user_id => @post.user
   	end
   end
 
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   	@comment.destroy
   	
   	respond_to do |format|
-	  format.html { redirect_to(posts_url) } 
+	  format.html { redirect_to :back} 
 	  format.xml { head :ok } 
 	end
   end
